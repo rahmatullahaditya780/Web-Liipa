@@ -76,6 +76,43 @@
             }
         }
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // sesuaikan selector dengan class "counter"
+      const counters = document.querySelectorAll('.counter');
+
+      function animateCount(el) {
+        const target = parseInt(el.dataset.value, 10);
+        const duration = parseInt(el.dataset.animationDuration, 10);
+        const startTime = performance.now();
+
+        function update(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const current = Math.floor(progress * target);
+          el.textContent = current.toLocaleString();
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = target.toLocaleString();
+          }
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(counter => observer.observe(counter));
+    });
     
 })(jQuery);
 

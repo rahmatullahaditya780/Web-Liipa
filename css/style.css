@@ -444,7 +444,23 @@
     border-right: none;
 }
 
-/* Tambahkan ini di bagian paling bawah style.css */
+.funfact-box {
+  background-color: #f4801e;
+  border: 1px solid #EFFDF5;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.funfact-section {
+  position: relative;
+}
+.funfact-item .counter {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+}
+
 
 /* 1. Definisikan keyframes untuk fade-out */
 @keyframes fadeOut {
