@@ -83,8 +83,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
-              <a href="index.html" class="nav-item nav-link">Home</a>
-              <a href="katalog.html" class="nav-item nav-link active"
+              <a href="index.php" class="nav-item nav-link">Home</a>
+              <a href="katalog.php" class="nav-item nav-link active"
                 >Katalog</a
               >
               <!-- <div class="nav-item dropdown">
@@ -95,9 +95,9 @@
                                 <a href="404.html" class="dropdown-item">Totebag</a>
                             </div>
                         </div> -->
-              <a href="the-heroes.html" class="nav-item nav-link">The Heroes</a>
-              <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-              <a href="contact.html" class="nav-item nav-link">Kontak</a>
+              <a href="the-heroes.php" class="nav-item nav-link">The Heroes</a>
+              <a href="about.php" class="nav-item nav-link">Tentang Kami</a>
+              <a href="contact.php" class="nav-item nav-link">Kontak</a>
             </div>
             <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Masuk</a>
           </div>
@@ -142,23 +142,17 @@
               <div class="row g-2">
                 <div class="col-md-4">
                   <input
+                    id="cari_produk"
                     type="text"
                     class="form-control border-0 py-3"
                     placeholder="Search Keyword"
+                    value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>"
                   />
-                </div>
-                <div class="col-md-4">
-                  <select class="form-select border-0 py-3">
-                    <option selected>Katalog</option>
-                    <option value="1">Aksesoris</option>
-                    <option value="2">Pakaian</option>
-                    <option value="3">Tas</option>
-                  </select>
-                </div>
+                </div>  
               </div>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-dark border-0 w-100 py-3">Search</button>
+              <button onclick="search_produk()" class="btn btn-dark border-0 w-100 py-3">Search</button>
             </div>
           </div>
         </div>
@@ -221,23 +215,21 @@
               </ul>
             </div>
           </div>
-            <div class="tab-content">
-            <div id="tab-1" class="tab-pane fade show active p-0">
-                <div id="list_produk" class="row g-4">
-
-                <!-- Item 1 -->
-
-
+          <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade p-0">
+              <div id="list_produk" class="row g-4">
+  
+                
+                
                 
 
-                </div> <!-- .row -->
-                <!-- Load More Button -->
-                <div class="col-12 text-center">
-                    <a class="btn btn-primary py-3 px-5" href="#">Muat lebih banyak</a>
+              </div>
+              <div class="row g-4">
+                <div class="col-12 text-center mt-5 wow fadeInUp" data-wow-delay="0.5s">
+                  <a class="btn btn-primary py-3 px-5" href="#">Muat lebih banyak</a>
                 </div>
-            </div> <!-- #tab-1 -->
-            </div> <!-- .tab-content -->
-
+              </div>
+            </div>
             <div id="tab-2" class="tab-pane fade p-0">
               <div class="row g-4">
                 <div
@@ -265,7 +257,6 @@
                       <a class="d-block h5 mb-2" href=""
                         >Aksesoris unik dari kain perca</a
                       >
-                      <!-- <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p> -->
                     </div>
                     <div class="d-flex border-top">
                       <small class="flex-fill text-center border-end py-2"
@@ -276,7 +267,6 @@
                         ><i class="fa fa-palette text-primary me-2"></i>3
                         Warna</small
                       >
-                      <!-- <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small> -->
                     </div>
                   </div>
                 </div>
@@ -316,7 +306,6 @@
                         ><i class="fa fa-palette text-primary me-2"></i>3
                         Warna</small
                       >
-                      <!-- <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small> -->
                     </div>
                   </div>
                 </div>
@@ -345,7 +334,6 @@
                       <a class="d-block h5 mb-2" href=""
                         >Aksesoris unik dari kain perca</a
                       >
-                      <!-- <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p> -->
                     </div>
                     <div class="d-flex border-top">
                       <small class="flex-fill text-center border-end py-2"
@@ -356,7 +344,6 @@
                         ><i class="fa fa-palette text-primary me-2"></i>3
                         Warna</small
                       >
-                      <!-- <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small> -->
                     </div>
                   </div>
                 </div>
@@ -630,44 +617,6 @@
       </div>
       <!-- Katalog End -->
 
-      <!-- Call to Action Start -->
-      <div class="container-xxl py-5">
-        <div class="container">
-          <div class="bg-light rounded p-3">
-            <div
-              class="bg-white rounded p-4"
-              style="border: 1px dashed rgba(0, 185, 142, 0.3)"
-            >
-              <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                  <img
-                    class="img-fluid rounded w-100"
-                    src="img/call-to-action.jpg"
-                    alt=""
-                  />
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                  <div class="mb-4">
-                    <h1 class="mb-3">Contact With Our Certified Agent</h1>
-                    <p>
-                      Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem
-                      kasd vero ipsum sit sit diam justo sed vero dolor duo.
-                    </p>
-                  </div>
-                  <a href="" class="btn btn-primary py-3 px-4 me-2"
-                    ><i class="fa fa-phone-alt me-2"></i>Make A Call</a
-                  >
-                  <a href="" class="btn btn-dark py-3 px-4"
-                    ><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Call to Action End -->
-
       <!-- Footer Start -->
       <div
         class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn"
@@ -774,39 +723,90 @@
     <script src="js/main.js"></script>
 
     <script>
-      $.get("/Web-Liipa/api/list.php", function (result) {
+    // Fungsi navigasi pencarian
+    function search_produk(){
+      var search_value = document.getElementById("cari_produk").value;
+      // redirect ke URL dengan parameter ?search=
+      window.location.href = "/Web-Liipa/katalog.php?search=" + encodeURIComponent(search_value);
+    }
+
+    // Cek apakah ada parameter search di URL
+    <?php if(isset($_GET['search']) && $_GET['search'] !== ''): ?>
+      // Jika ada, panggil API search.php
+      var search = <?php echo json_encode($_GET['search']); ?>;
+      $.get("/Web-Liipa/api/search.php", { search: search }, function(result){
+        if(result.status){
+          var data_html = "";
+          result.result.forEach(function(produk){
+            data_html += `
+              <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="property-item rounded overflow-hidden">
+                  <div class="position-relative overflow-hidden">
+                    <a href="#"><img class="img-fluid w-100 object-fit-cover" style="height:250px"
+                                     src="${produk.gambar_produk}" alt="Gambar"></a>
+                    <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                      ${produk.detail_produk.nama_kategori}
+                    </div>
+                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                      ${produk.nama_produk}
+                    </div>
+                  </div>
+                  <div class="p-4 pb-0">
+                    <h5 class="text-primary mb-3">Rp ${produk.harga_produk}.000,00</h5>
+                    <a class="d-block h5 mb-2" href="#">${produk.deskripsi_produk}</a>
+                  </div>
+                  <div class="d-flex border-top">
+                    <small class="flex-fill text-center border-end py-2">
+                      <i class="fa fa-star text-primary me-2"></i>${produk.rating}
+                    </small>
+                    <small class="flex-fill text-center py-2">
+                      <i class="fa fa-palette text-primary me-2"></i>${produk.jumlah_varian_warna} Varian
+                    </small>
+                  </div>
+                </div>
+              </div>`;
+          });
+          $("#list_produk").html(data_html);
+        } else {
+          $("#list_produk").html("<h1>Produk tidak ditemukan</h1>");
+        }
+      });
+    <?php else: ?>
+      // Jika tidak ada parameter search, panggil list_katalog.php
+      $.get("/Web-Liipa/api/list_katalog.php", function(result){
         var html_data = "";
-        result.forEach((produk) => {
-          html_data += `<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="property-item rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                        <a href="#">
-                        <img class="img-fluid" src="${produk.gambar_produk}" alt="Totebag">
-                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        ${produk.detail_produk.nama_kategori}
-                        </div>
-                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                        ${produk.nama_produk}
-                        </div>
-                    </div>
-                    <div class="p-4 pb-0">
-                        <h5 class="text-primary mb-3">Rp. ${produk.harga_produk}.000,00</h5>
-                        <a class="d-block h5 mb-2" href="#">${produk.deskripsi_produk}</a>
-                    </div>
-                    <div class="d-flex border-top">
-                        <small class="flex-fill text-center border-end py-2">
-                        <i class="fa fa-ruler-combined text-primary me-2"></i>${produk.rating}
-                        </small>
-                        <small class="flex-fill text-center py-2">
-                        <i class="fa fa-palette text-primary me-2"></i>${produk.jumlah_varian_warna} Warna
-                        </small>
-                    </div>
-                    </div>
-                </div>`;
+        result.forEach(function(produk){
+          html_data += `
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div class="property-item rounded overflow-hidden">
+                <div class="position-relative overflow-hidden">
+                  <a href="#"><img class="img-fluid w-100 object-fit-cover" style="height:250px"
+                                   src="${produk.gambar_produk}" alt="Gambar"></a>
+                  <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                    ${produk.detail_produk.nama_kategori}
+                  </div>
+                  <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                    ${produk.nama_produk}
+                  </div>
+                </div>
+                <div class="p-4 pb-0">
+                  <h5 class="text-primary mb-3">Rp ${produk.harga_produk}.000,00</h5>
+                  <a class="d-block h5 mb-2" href="#">${produk.deskripsi_produk}</a>
+                </div>
+                <div class="d-flex border-top">
+                  <small class="flex-fill text-center border-end py-2">
+                    <i class="fa fa-star text-primary me-2"></i>${produk.rating}
+                  </small>
+                  <small class="flex-fill text-center py-2">
+                    <i class="fa fa-palette text-primary me-2"></i>${produk.jumlah_varian_warna} Varian
+                  </small>
+                </div>
+              </div>
+            </div>`;
         });
         $("#list_produk").html(html_data);
       });
-    </script>
-
+    <?php endif; ?>
+  </script>
   </body>
 </html>

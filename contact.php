@@ -56,8 +56,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="katalog.html" class="nav-item nav-link">Katalog</a>
+                        <a href="index.php" class="nav-item nav-link">Home</a>
+                        <a href="katalog.php" class="nav-item nav-link">Katalog</a>
                         <!-- <div class="nav-item dropdown">
                             <a href="katalog.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Katalog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -66,9 +66,9 @@
                                 <a href="404.html" class="dropdown-item">Totebag</a>
                             </div>
                         </div> -->
-                        <a href="the-heroes.html" class="nav-item nav-link">The Heroes</a>
-                        <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                        <a href="contact.html" class="nav-item nav-link active">Kontak</a>
+                        <a href="the-heroes.php" class="nav-item nav-link">The Heroes</a>
+                        <a href="about.php" class="nav-item nav-link">Tentang Kami</a>
+                        <a href="contact.php" class="nav-item nav-link active">Kontak</a>
                     </div>
                     <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Masuk</a>
                 </div>

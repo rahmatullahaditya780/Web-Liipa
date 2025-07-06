@@ -56,8 +56,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="katalog.html" class="nav-item nav-link">Katalog</a>
+                        <a href="index.php" class="nav-item nav-link">Home</a>
+                        <a href="katalog.php" class="nav-item nav-link">Katalog</a>
                         <!-- <div class="nav-item dropdown">
                             <a href="katalog.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Katalog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -66,9 +66,9 @@
                                 <a href="404.html" class="dropdown-item">Totebag</a>
                             </div>
                         </div> -->
-                        <a href="the-heroes.html" class="nav-item nav-link active">The Heroes</a>
-                        <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                        <a href="contact.html" class="nav-item nav-link">Kontak</a>
+                        <a href="the-heroes.php" class="nav-item nav-link">The Heroes</a>
+                        <a href="about.php" class="nav-item nav-link active">Tentang Kami</a>
+                        <a href="contact.php" class="nav-item nav-link">Kontak</a>
                     </div>
                     <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Masuk</a>
                 </div>
@@ -82,11 +82,11 @@
             <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
                 <div style="height: 60px;"></div>
                 <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">The Heroes</h1> 
+                    <h1 class="display-5 animated fadeIn mb-4">About Us</h1> 
                         <nav aria-label="breadcrumb animated fadeIn">
                         <ol class="breadcrumb text-uppercase">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item text-body active" aria-current="page">The Heroes</li>
+                            <li class="breadcrumb-item text-body active" aria-current="page">About</li>
                         </ol>
                     </nav>
                 </div>
@@ -97,26 +97,18 @@
         </div>
         <!-- Header End -->
 
-        
+
         <!-- About Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                        <div class="ratio ratio-16x9">
-                        <iframe
-                            class="img-fluid w-100"
-                            src="https://www.youtube.com/embed/xYlgCEXSG6k?si=eCrFml2AMPR1aX_7"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen>
-                        </iframe>
+                        <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                            <img class="img-fluid w-100" src="img/hero2.jpg">
                         </div>
                     </div>
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="mb-4">Mari Menjadi Heroes</h1>
+                        <h1 class="mb-4">Tempat No.1 untuk mencari produk kerajinan unik dari kain perca</h1>
                         <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                         <p><i class="fa fa-check text-primary me-3"></i>Tempor erat elitr rebum at clita</p>
                         <p><i class="fa fa-check text-primary me-3"></i>Aliqu diam amet diam et eos</p>
@@ -129,29 +121,82 @@
         <!-- About End -->
 
 
-        <!-- Call to Action Start -->
+        <!-- Team Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="bg-light rounded p-3">
-                    <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
-                        <div class="row g-5 align-items-center">
-                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                <img class="img-fluid rounded w-100" src="img/call-to-action.jpg" alt="">
-                            </div>
-                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="mb-4">
-                                    <h1 class="mb-3">Contact With Our Certified Agent</h1>
-                                    <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit diam justo sed vero dolor duo.</p>
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Tim Kami</h1>
+                    <p>Kesuksesan Perca.id tidak terlepas dari dedikasi tim kami yang penuh kreativitas, semangat, dan inovasi.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/" alt="img">
+                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                                 </div>
-                                <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
-                                <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
+                            </div>
+                            <div class="text-center p-4 mt-3">
+                                <h5 class="fw-bold mb-0">Mohammad Djafar Ramadhan</h5>
+                                <small>CEO and Founder Liipa'</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/" alt="img">
+                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 mt-3">
+                                <h5 class="fw-bold mb-0">Muhammad Rofiq Roihan</h5>
+                                <small>Front-end Developer</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/" alt="img">
+                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 mt-3">
+                                <h4 class="fw-bold mb-0">Aditya Rahmatullah</h4>
+                                <small>Full Stack Developer</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/" alt="img">
+                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 mt-3">
+                                <h5 class="fw-bold mb-0">Fathier Muhammad Ariesta</h5>
+                                <small>Front-end Developer</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Call to Action End -->
+        <!-- Team End -->
         
 
          <!-- Footer Start -->

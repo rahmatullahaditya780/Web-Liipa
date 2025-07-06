@@ -56,8 +56,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="katalog.html" class="nav-item nav-link">Katalog</a>
+                        <a href="index.php" class="nav-item nav-link active">Home</a>
+                        <a href="katalog.php" class="nav-item nav-link">Katalog</a>
                         <!-- <div class="nav-item dropdown">
                             <a href="katalog.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Katalog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -66,9 +66,9 @@
                                 <a href="404.html" class="dropdown-item">Totebag</a>
                             </div>
                         </div> -->
-                        <a href="the-heroes.html" class="nav-item nav-link">The Heroes</a>
-                        <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                        <a href="contact.html" class="nav-item nav-link">Kontak</a>
+                        <a href="the-heroes.php" class="nav-item nav-link">The Heroes</a>
+                        <a href="about.php" class="nav-item nav-link">Tentang Kami</a>
+                        <a href="contact.php" class="nav-item nav-link">Kontak</a>
                     </div>
                     <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Masuk</a>
                 </div>
@@ -109,36 +109,8 @@
         </div>        
         <!-- Header End -->
 
-
-        <!-- Search Start -->
-        <!-- <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
-            <div class="container">
-                <div class="row g-2">
-                    <div class="col-md-10">
-                        <div class="row g-2">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-select border-0 py-3">
-                                    <option selected>Katalog</option>
-                                    <option value="1">Property Type 1</option>
-                                    <option value="2">Property Type 2</option>
-                                    <option value="3">Property Type 3</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-dark border-0 w-100 py-3">Search</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- Search End -->
-
-         <!-- About Start -->
-         <div class="container-xxl py-5">
+        <!-- About Start -->
+        <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -212,53 +184,10 @@
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Produk Kami</h1>
-                    <p>Melalui Perca.id kain perca yang sebelumnya dianggap limbah diubah menjadi produk bernilai tinggi.</p>
+                    <p>Melalui Liipa' kain perca yang sebelumnya dianggap limbah diubah menjadi produk bernilai tinggi.</p>
                 </div>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="img/icon-apartment.png" alt="Icon">
-                                </div>
-                                <h6>Tas Jinjing</h6>
-                                <span>Rp.000,00</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="img/icon-villa.png" alt="Icon">
-                                </div>
-                                <h6>Tas Laptop</h6>
-                                <span>Rp.000,00</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="img/icon-house.png" alt="Icon">
-                                </div>
-                                <h6>Tali Gantungan</h6>
-                                <span>Rp.000,00</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="img/icon-housing.png" alt="Icon">
-                                </div>
-                                <h6>Sarung Tangan Oven</h6>
-                                <span>Rp.000,00</span>
-                            </div>
-                        </a>
-                    </div>
+                <div id="produk" class="row g-4">
+                    
                 </div>
             </div>
         </div>
@@ -510,6 +439,26 @@
             }
         });
     </script>    
+
+    <script>
+      $.get("/Web-Liipa/api/list_index.php", function (result) {
+        var html_data = "";
+        result.forEach((produk) => {
+          html_data += `<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="katalog.php">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid w-100 object-fit-cover" style="height: 150px" src="${produk.gambar_produk}" alt="Icon">
+                                </div>
+                                <h6>${produk.nama_produk}</h6>
+                                <span>Rp${produk.harga_produk}.000,00</span>
+                            </div>
+                        </a>
+                    </div>`;
+        });
+        $("#produk").html(html_data);
+      });
+    </script>
 </body>
 
 </html>
