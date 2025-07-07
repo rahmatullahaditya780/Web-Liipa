@@ -1,11 +1,9 @@
 <?php
+header("Content-Type: application/json; charset=UTF-8");
 // tampilkan error saat development
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
 require_once("vendor/autoload.php");
-
-header("Content-Type: application/json; charset=UTF-8");
 
 use Simplon\Mysql\Mysql;
 use Simplon\Mysql\PDOConnector;
@@ -29,7 +27,7 @@ try {
     exit;
 }
 
-// 2) ambil parameter search
+// ambil parameter search
 $searchRaw = isset($_GET['search']) ? trim($_GET['search']) : '';
 if ($searchRaw === '') {
     http_response_code(400);
@@ -40,7 +38,7 @@ if ($searchRaw === '') {
     exit;
 }
 
-// 3) query dengan prepared statement + join kategori
+// query
 $sql = "
     SELECT
       p.id_produk,
@@ -58,12 +56,15 @@ $sql = "
     WHERE p.nama_produk LIKE :search 
     ORDER BY p.id_produk DESC
 ";
-
 $params = [ 'search' => '%' . $searchRaw . '%' ];
 
-// 4) eksekusi dan fetch
+// eksekusi & fetch
 try {
     $rows = $db->fetchRowMany($sql, $params);
+    // pastikan $rows selalu array
+    if (!is_array($rows)) {
+        $rows = [];
+    }
 } catch (\Exception $e) {
     http_response_code(500);
     echo json_encode([
@@ -73,9 +74,8 @@ try {
     exit;
 }
 
-// 5) bentuk response
-if (count($rows) > 0) {
-    // bungkus tiap row agar ada properti detail_produk
+// bentuk response
+if (!empty($rows)) {   // <-- ganti count() dengan !empty()
     $result = array_map(function($r){
         return [
             'id_produk'           => $r['id_produk'],
@@ -85,7 +85,6 @@ if (count($rows) > 0) {
             'harga_produk'        => $r['harga_produk'],
             'rating'              => $r['rating'],
             'jumlah_varian_warna' => $r['jumlah_varian_warna'],
-            // detail_produk sebagai objek
             'detail_produk'       => [
                 'kategori_produk'   => $r['kategori_produk'],
                 'nama_kategori'     => $r['nama_kategori'],

@@ -123,9 +123,6 @@
               </ol>
             </nav>
           </div>
-          <div class="col-md-6 animated fadeIn">
-            <img class="img-fluid" src="img/header.jpg" alt="" />
-          </div>
         </div>
       </div>
       <!-- Header End -->
@@ -216,7 +213,7 @@
             </div>
           </div>
           <div class="tab-content">
-            <div id="tab-1" class="tab-pane fade p-0">
+            <div id="tab-1" class="tab-pane show active fade p-0">
               <div id="list_produk" class="row g-4">
   
                 
@@ -224,7 +221,7 @@
                 
 
               </div>
-              <div class="row g-4">
+              <div class="row g-4 load-more-wrapper">
                 <div class="col-12 text-center mt-5 wow fadeInUp" data-wow-delay="0.5s">
                   <a class="btn btn-primary py-3 px-5" href="#">Muat lebih banyak</a>
                 </div>
@@ -235,83 +232,6 @@
                 <div
                   class="col-lg-4 col-md-6 wow fadeInUp"
                   data-wow-delay="0.1s"
-                >
-                  <div class="property-item rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                      <a href=""
-                        ><img class="img-fluid" src="img/Totebag1.jpg" alt=""
-                      /></a>
-                      <div
-                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                      >
-                        Aksesoris
-                      </div>
-                      <div
-                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                      >
-                        Aksesoris
-                      </div>
-                    </div>
-                    <div class="p-4 pb-0">
-                      <h5 class="text-primary mb-3">Rp. 000,00</h5>
-                      <a class="d-block h5 mb-2" href=""
-                        >Aksesoris unik dari kain perca</a
-                      >
-                    </div>
-                    <div class="d-flex border-top">
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-ruler-combined text-primary me-2"></i
-                        >10 cm2</small
-                      >
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-palette text-primary me-2"></i>3
-                        Warna</small
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.3s"
-                >
-                  <div class="property-item rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                      <a href=""
-                        ><img class="img-fluid" src="img/Totebag1.jpg" alt=""
-                      /></a>
-                      <div
-                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                      >
-                        Aksesoris
-                      </div>
-                      <div
-                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                      >
-                        Aksesoris
-                      </div>
-                    </div>
-                    <div class="p-4 pb-0">
-                      <h5 class="text-primary mb-3">Rp. 000,00</h5>
-                      <a class="d-block h5 mb-2" href=""
-                        >Aksesoris unik dari kain perca</a
-                      >
-                      <!-- <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p> -->
-                    </div>
-                    <div class="d-flex border-top">
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-ruler-combined text-primary me-2"></i
-                        >10 cm2</small
-                      >
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-palette text-primary me-2"></i>3
-                        Warna</small
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.3s"
                 >
                   <div class="property-item rounded overflow-hidden">
                     <div class="position-relative overflow-hidden">
@@ -396,86 +316,6 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.3s"
-                >
-                  <div class="property-item rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                      <a href=""
-                        ><img class="img-fluid" src="img/Totebag1.jpg" alt=""
-                      /></a>
-                      <div
-                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                      >
-                        Pakaian
-                      </div>
-                      <div
-                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                      >
-                        Celana
-                      </div>
-                    </div>
-                    <div class="p-4 pb-0">
-                      <h5 class="text-primary mb-3">Rp. 000,00</h5>
-                      <a class="d-block h5 mb-2" href=""
-                        >Celana unik dari kain perca</a
-                      >
-                      <!-- <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p> -->
-                    </div>
-                    <div class="d-flex border-top">
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-ruler-combined text-primary me-2"></i
-                        >10 cm2</small
-                      >
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-palette text-primary me-2"></i>3
-                        Warna</small
-                      >
-                      <!-- <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small> -->
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.3s"
-                >
-                  <div class="property-item rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                      <a href=""
-                        ><img class="img-fluid" src="img/Totebag1.jpg" alt=""
-                      /></a>
-                      <div
-                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                      >
-                        Pakaian
-                      </div>
-                      <div
-                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                      >
-                        Baju
-                      </div>
-                    </div>
-                    <div class="p-4 pb-0">
-                      <h5 class="text-primary mb-3">Rp. 000,00</h5>
-                      <a class="d-block h5 mb-2" href=""
-                        >Baju unik dari kain perca</a
-                      >
-                      <!-- <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p> -->
-                    </div>
-                    <div class="d-flex border-top">
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-ruler-combined text-primary me-2"></i
-                        >10 cm2</small
-                      >
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-palette text-primary me-2"></i>3
-                        Warna</small
-                      >
-                      <!-- <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small> -->
-                    </div>
-                  </div>
-                </div>
                 <div class="col-12 text-center">
                   <a class="btn btn-primary py-3 px-5" href="#"
                     >Muat lebih banyak</a
@@ -503,86 +343,6 @@
                         class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
                       >
                         Totebag
-                      </div>
-                    </div>
-                    <div class="p-4 pb-0">
-                      <h5 class="text-primary mb-3">Rp. 000,00</h5>
-                      <a class="d-block h5 mb-2" href=""
-                        >Totebag unik dari kain perca</a
-                      >
-                      <!-- <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p> -->
-                    </div>
-                    <div class="d-flex border-top">
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-ruler-combined text-primary me-2"></i
-                        >10 cm2</small
-                      >
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-palette text-primary me-2"></i>3
-                        Warna</small
-                      >
-                      <!-- <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small> -->
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.3s"
-                >
-                  <div class="property-item rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                      <a href=""
-                        ><img class="img-fluid" src="img/Totebag1.jpg" alt=""
-                      /></a>
-                      <div
-                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                      >
-                        Tas
-                      </div>
-                      <div
-                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                      >
-                        Totebag
-                      </div>
-                    </div>
-                    <div class="p-4 pb-0">
-                      <h5 class="text-primary mb-3">Rp. 000,00</h5>
-                      <a class="d-block h5 mb-2" href=""
-                        >Totebag unik dari kain perca</a
-                      >
-                      <!-- <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p> -->
-                    </div>
-                    <div class="d-flex border-top">
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-ruler-combined text-primary me-2"></i
-                        >10 cm2</small
-                      >
-                      <small class="flex-fill text-center border-end py-2"
-                        ><i class="fa fa-palette text-primary me-2"></i>3
-                        Warna</small
-                      >
-                      <!-- <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small> -->
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.3s"
-                >
-                  <div class="property-item rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                      <a href=""
-                        ><img class="img-fluid" src="img/Totebag1.jpg" alt=""
-                      /></a>
-                      <div
-                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                      >
-                        Tas
-                      </div>
-                      <div
-                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                      >
-                        Tas Laptop
                       </div>
                     </div>
                     <div class="p-4 pb-0">
@@ -723,6 +483,18 @@
     <script src="js/main.js"></script>
 
     <script>
+      // Tangkap Enter pada input
+      document
+        .getElementById('cari_produk')
+        .addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();      // cegah form default (jika ada)
+            search_produk();         // panggil fungsi search
+          }
+        });
+    </script>
+
+    <script>
     // Fungsi navigasi pencarian
     function search_produk(){
       var search_value = document.getElementById("cari_produk").value;
@@ -734,42 +506,68 @@
     <?php if(isset($_GET['search']) && $_GET['search'] !== ''): ?>
       // Jika ada, panggil API search.php
       var search = <?php echo json_encode($_GET['search']); ?>;
-      $.get("/Web-Liipa/api/search.php", { search: search }, function(result){
-        if(result.status){
-          var data_html = "";
-          result.result.forEach(function(produk){
-            data_html += `
-              <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="property-item rounded overflow-hidden">
-                  <div class="position-relative overflow-hidden">
-                    <a href="#"><img class="img-fluid w-100 object-fit-cover" style="height:250px"
-                                     src="${produk.gambar_produk}" alt="Gambar"></a>
-                    <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                      ${produk.detail_produk.nama_kategori}
+      $(function(){
+        // ===> ambil param "search" dari URL
+        const params = new URLSearchParams(window.location.search);
+        const search = params.get('search') || ""; 
+
+        $.ajax({
+          type: "GET",                                // kita pakai GET supaya konsisten dengan query‑string
+          url: "/Web-Liipa/api/search.php",
+          data: { search },                           // sekarang `search` sudah pasti terdefinisi
+          dataType: "json",
+          success: function(result) {
+            console.log("API response:", result);
+            var html = "";
+            if (result.status && Array.isArray(result.result) && result.result.length > 0) {
+              result.result.forEach(function(produk){
+                html += `
+                  <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="property-item rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                        <a href="#">
+                          <img class="img-fluid w-100 object-fit-cover" style="height:250px"
+                              src="${produk.gambar_produk}" alt="Gambar">
+                        </a>
+                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                          ${produk.detail_produk.nama_kategori}
+                        </div>
+                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                          ${produk.nama_produk}
+                        </div>
+                      </div>
+                      <div class="p-4 pb-0">
+                        <h5 class="text-primary mb-3">Rp ${produk.harga_produk}.000,00</h5>
+                        <a class="d-block h5 mb-2" href="#">${produk.deskripsi_produk}</a>
+                      </div>
+                      <div class="d-flex border-top">
+                        <small class="flex-fill text-center border-end py-2">
+                          <i class="fa fa-star text-primary me-2"></i>${produk.rating}
+                        </small>
+                        <small class="flex-fill text-center py-2">
+                          <i class="fa fa-palette text-primary me-2"></i>${produk.jumlah_varian_warna} Varian
+                        </small>
+                      </div>
                     </div>
-                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                      ${produk.nama_produk}
-                    </div>
-                  </div>
-                  <div class="p-4 pb-0">
-                    <h5 class="text-primary mb-3">Rp ${produk.harga_produk}.000,00</h5>
-                    <a class="d-block h5 mb-2" href="#">${produk.deskripsi_produk}</a>
-                  </div>
-                  <div class="d-flex border-top">
-                    <small class="flex-fill text-center border-end py-2">
-                      <i class="fa fa-star text-primary me-2"></i>${produk.rating}
-                    </small>
-                    <small class="flex-fill text-center py-2">
-                      <i class="fa fa-palette text-primary me-2"></i>${produk.jumlah_varian_warna} Varian
-                    </small>
-                  </div>
-                </div>
-              </div>`;
-          });
-          $("#list_produk").html(data_html);
-        } else {
-          $("#list_produk").html("<h1>Produk tidak ditemukan</h1>");
-        }
+                  </div>`;
+              });
+              $('.load-more-wrapper').show();
+            } else {
+              console.log("Error message:", result.msg || "Tidak ada produk");
+              html = "<h1>Produk tidak ditemukan</h1>";
+              $('.load-more-wrapper').hide();
+            }
+            $("#list_produk").html(html);
+            // pastikan tab aktif kalau perlu
+            var tabEl = document.querySelector('a[href="#tab-1"]');
+            if (tabEl) new bootstrap.Tab(tabEl).show();
+          },
+          error: function(xhr, status, err) {
+            console.error("AJAX error:", status, err);
+            console.log("Response text:", xhr.responseText);   // <-- debugging: lihat apa yang sebenarnya diterima
+            $("#list_produk").html("<h1>Gagal memuat data</h1>");
+          }
+        });
       });
     <?php else: ?>
       // Jika tidak ada parameter search, panggil list_katalog.php

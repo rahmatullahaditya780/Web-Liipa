@@ -90,9 +90,6 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-md-6 animated fadeIn">
-                    <img class="img-fluid" src="img/header.jpg" alt="">
-                </div>
             </div>
         </div>
         <!-- Header End -->

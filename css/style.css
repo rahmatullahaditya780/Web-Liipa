@@ -489,3 +489,7 @@
   /* Jalankan animasi yang telah didefinisikan */
   animation: fadeOut 0.5s forwards;
 }
+
+.load-more-wrapper {
+  display: none;
+}
