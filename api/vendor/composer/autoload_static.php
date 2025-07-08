@@ -4,19 +4,53 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
+class ComposerStaticInitcb59442dee39da646ef38f09ee39da8c
 {
+    public static $files = array (
+        '5d9c5be1aa1fbc12016e2c5bd16bbc70' => __DIR__ . '/..' . '/dusank/knapsack/src/collection_functions.php',
+        'e5fde315a98ded36f9b25eb160f6c9fc' => __DIR__ . '/..' . '/dusank/knapsack/src/utility_functions.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Test\\' => 5,
+        ),
+        'S' => 
+        array (
+            'Simplon\\Mysql\\' => 14,
+            'Simplon\\Helper\\' => 15,
+        ),
         'P' => 
         array (
             'PHPMailer\\PHPMailer\\' => 20,
         ),
+        'D' => 
+        array (
+            'DusanKasan\\Knapsack\\' => 20,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Test\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/simplon/mysql/test',
+        ),
+        'Simplon\\Mysql\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/simplon/mysql/src',
+        ),
+        'Simplon\\Helper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/simplon/helper/src',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'DusanKasan\\Knapsack\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dusank/knapsack/src',
         ),
     );
 
@@ -27,9 +61,9 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2185d2f99bcd56787481d9357a5972d3::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2185d2f99bcd56787481d9357a5972d3::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit2185d2f99bcd56787481d9357a5972d3::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcb59442dee39da646ef38f09ee39da8c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcb59442dee39da646ef38f09ee39da8c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitcb59442dee39da646ef38f09ee39da8c::$classMap;
 
         }, null, ClassLoader::class);
     }
