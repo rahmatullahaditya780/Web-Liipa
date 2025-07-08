@@ -6,8 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Test\\' => array($vendorDir . '/simplon/mysql/test'),
-    'Simplon\\Mysql\\' => array($vendorDir . '/simplon/mysql/src'),
-    'Simplon\\Helper\\' => array($vendorDir . '/simplon/helper/src'),
-    'DusanKasan\\Knapsack\\' => array($vendorDir . '/dusank/knapsack/src'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
 );

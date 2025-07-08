@@ -125,6 +125,118 @@
         </div>
         <!-- About End -->
 
+
+        <!-- Call to Action Start -->
+        <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+            <!-- Form Kontak -->
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p class="mb-4">
+                Jika Anda tertarik untuk menjalin hubungan kemitraan dengan kami, silakan isi formulir berikut.
+                </p>
+                <form id="contact-form" novalidate>
+                <div class="row g-3">
+
+                    <!-- Nama -->
+                    <div class="col-md-6">
+                    <div class="form-floating">
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="nama"
+                        name="nama"
+                        placeholder="Nama Anda"
+                        required
+                        >
+                        <label for="nama">Nama</label>
+                        <div class="invalid-feedback">Tolong masukkan nama Anda.</div>
+                    </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-6">
+                    <div class="form-floating">
+                        <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="Email Anda"
+                        required
+                        >
+                        <label for="email">Email</label>
+                        <div class="invalid-feedback">Tolong masukkan email yang valid.</div>
+                    </div>
+                    </div>
+
+                    <!-- No. HP -->
+                    <div class="col-md-6">
+                    <div class="form-floating">
+                        <input
+                        type="tel"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                        placeholder="No. HP Anda"
+                        pattern="[0-9+\-\s()]{7,}"
+                        required
+                        >
+                        <label for="phone">No. HP</label>
+                        <div class="invalid-feedback">Tolong masukkan nomor HP yang valid.</div>
+                    </div>
+                    </div>
+
+                    <!-- Alamat -->
+                    <div class="col-md-6">
+                    <div class="form-floating">
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="alamat"
+                        name="alamat"
+                        placeholder="Alamat lengkap Anda"
+                        required
+                        >
+                        <label for="alamat">Alamat lengkap</label>
+                        <div class="invalid-feedback">Tolong masukkan alamat tempat tinggal Anda.</div>
+                    </div>
+                    </div>
+
+                    <!-- Pesan / Biografi -->
+                    <div class="col-12">
+                    <div class="form-floating">
+                        <textarea
+                        class="form-control"
+                        id="message"
+                        name="message"
+                        placeholder="Ceritakan sedikit tentang diri Anda..."
+                        style="height: 150px"
+                        required
+                        ></textarea>
+                        <label for="message">Ceritakan sedikit tentang diri Anda dan kenapa ingin menjalin kemitraan</label>
+                        <div class="invalid-feedback">Tolong tuliskan pesan atau biografi singkat.</div>
+                    </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="col-12">
+                    <button class="btn btn-primary w-100 py-3" type="submit">
+                        Kirim
+                    </button>
+                    </div>
+
+                </div>
+                </form>
+                <!-- Feedback -->
+                <div id="form-alert" class="mt-3" style="display:none;"></div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- Call to Action End -->
+        
+
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
@@ -194,9 +306,68 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        (function () {
+            'use strict';
+            const form = document.getElementById('contact-form');
+            const alertBox = document.getElementById('form-alert');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Validasi form
+                if (!form.checkValidity()) {
+                    form.classList.add('was-validated');
+                    return;
+                }
+
+                // Ambil nilai input
+                const data = {
+                    nama:    form.querySelector('[name="nama"]').value.trim(),
+                    email:   form.querySelector('[name="email"]').value.trim(),
+                    phone:   form.querySelector('[name="phone"]').value.trim(),
+                    alamat:  form.querySelector('[name="alamat"]').value.trim(),
+                    message: form.querySelector('[name="message"]').value.trim()
+                };
+
+                // Kirim POST JSON ke contact.php
+                fetch('api/contact_for_heroes.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(async res => {
+                    const contentType = res.headers.get('Content-Type');
+                    if (!contentType || !contentType.includes('application/json')) {
+                        const text = await res.text();
+                        throw new Error('Respons bukan JSON: ' + text.slice(0, 100));
+                    }
+                    return res.json();
+                })
+                .then(json => {
+                    alertBox.style.display = 'block';
+                    if (json.success) {
+                        alertBox.className = 'alert alert-success';
+                        alertBox.textContent = 'Pesan berhasil terkirim!';
+                        form.reset();
+                        form.classList.remove('was-validated');
+                    } else {
+                        alertBox.className = 'alert alert-danger';
+                        alertBox.textContent = 'Gagal mengirim: ' + json.error;
+                    }
+                })
+                .catch(err => {
+                    alertBox.style.display = 'block';
+                    alertBox.className = 'alert alert-danger';
+                    alertBox.textContent = 'Error: ' + err.message;
+                });
+            });
+        })();
+    </script>
+
 </body>
 
 </html>

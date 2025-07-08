@@ -94,35 +94,6 @@
         </div>
         <!-- Header End -->
 
-
-         <!-- Search Start -->
-         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
-            <div class="container">
-                <div class="row g-2">
-                    <div class="col-md-10">
-                        <div class="row g-2">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-select border-0 py-3">
-                                    <option selected>Katalog</option>
-                                    <option value="1">Aksesoris</option>
-                                    <option value="2">Tas</option>
-                                    <option value="3">Totebag</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-dark border-0 w-100 py-3">Search</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Search End -->
-
-
         <!-- Contact Start -->
         <div class="container-xxl py-5">
             <div class="container">
@@ -139,7 +110,7 @@
                                         <div class="icon me-3" style="width: 45px; height: 45px;">
                                             <i class="fa fa-map-marker-alt text-primary"></i>
                                         </div>
-                                        <span>123 Street, New York, USA</span>
+                                        <span>Jl. Sultan Alauddin No. 63 Makassar, Sulawesi Selatan, Indonesia</span>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +120,7 @@
                                         <div class="icon me-3" style="width: 45px; height: 45px;">
                                             <i class="fa fa-envelope-open text-primary"></i>
                                         </div>
-                                        <span>info@example.com</span>
+                                        <span>kainpercaid@gmail.com</span>
                                     </div>
                                 </div>
                             </div>
@@ -173,8 +144,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="wow fadeInUp" data-wow-delay="0.5s">
-                            <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                            <form>
+                            <p class="mb-4">Berikan pesan singkat melalui Email dengan mengisi formulir berikut.</a>.</p>
+                            <form id="contact-form" novalidate>
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
@@ -202,6 +173,7 @@
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                        <div id="form-alert" class="mt-3" style="display: none;"></div>
                                     </div>
                                 </div>
                             </form>
@@ -282,9 +254,59 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contact-form");
+            const alertBox = document.getElementById("form-alert");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Ambil data dari input form
+                const data = {
+                    name:    form.name.value.trim(),
+                    email:   form.email.value.trim(),
+                    subject: form.subject.value.trim(),
+                    message: form.message.value.trim(),
+                };
+
+                // Validasi sederhana
+                if (!data.name || !data.email || !data.subject || !data.message) {
+                    showAlert("Harap lengkapi semua kolom.", "danger");
+                    return;
+                }
+
+                // Kirim ke backend (misalnya ke /api/contact.php)
+                fetch("api/contact.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(json => {
+                    if (json.success) {
+                        showAlert("Pesan berhasil dikirim. Terima kasih!", "success");
+                        form.reset();
+                    } else {
+                        showAlert("Gagal: " + json.error, "danger");
+                    }
+                })
+                .catch(error => {
+                    showAlert("Terjadi kesalahan: " + error.message, "danger");
+                });
+            });
+
+            function showAlert(message, type = "success") {
+                alertBox.innerHTML = message;
+                alertBox.className = "alert alert-" + type;
+                alertBox.style.display = "block";
+            }
+        });
+    </script>
+
 </body>
 
 </html>

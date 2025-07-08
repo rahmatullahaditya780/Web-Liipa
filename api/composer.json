@@ -1,5 +1,5 @@
 {
     "require": {
-        "simplon/mysql": "^2.2"
+        "phpmailer/phpmailer": "^6.10"
     }
 }
