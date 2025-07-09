@@ -1,16 +1,18 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
+
 // tampilkan error saat development
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
 require_once("vendor/autoload.php");
 
+use Simplon\Mysql\PdoConnector;
 use Simplon\Mysql\Mysql;
-use Simplon\Mysql\PDOConnector;
 
 try {
     // 1) koneksi database
-    $pdoConnector = new PDOConnector(
+    $pdoConnector = new PdoConnector(
         'localhost', // host
         'root',      // user
         '',          // pass
@@ -18,6 +20,7 @@ try {
     );
     $pdo = $pdoConnector->connect('utf8', []);
     $db  = new Mysql($pdo);
+
 } catch (\Exception $e) {
     http_response_code(500);
     echo json_encode([
@@ -27,8 +30,10 @@ try {
     exit;
 }
 
-// ambil parameter search
-$searchRaw = isset($_GET['search']) ? trim($_GET['search']) : '';
+// ambil parameter search (wajib) dan kategori (opsional)
+$searchRaw   = trim((string)($_GET['search'] ?? ''));
+$kategoriRaw = trim((string)($_GET['kategori'] ?? ''));
+
 if ($searchRaw === '') {
     http_response_code(400);
     echo json_encode([
@@ -38,7 +43,7 @@ if ($searchRaw === '') {
     exit;
 }
 
-// query
+// bangun SQL dengan filter kategori jika disediakan
 $sql = "
     SELECT
       p.id_produk,
@@ -53,15 +58,22 @@ $sql = "
     FROM tb_produk p
     LEFT JOIN tb_kategori k
       ON p.kategori_produk = k.id_kategori
-    WHERE p.nama_produk LIKE :search 
-    ORDER BY p.id_produk DESC
+    WHERE p.nama_produk LIKE :search
 ";
-$params = [ 'search' => '%' . $searchRaw . '%' ];
 
-// eksekusi & fetch
+$params = [
+    'search' => '%' . $searchRaw . '%'
+];
+
+if ($kategoriRaw !== '') {
+    $sql .= " AND k.nama_kategori = :kategori";
+    $params['kategori'] = $kategoriRaw;
+}
+
+$sql .= " ORDER BY p.id_produk DESC";
+
 try {
     $rows = $db->fetchRowMany($sql, $params);
-    // pastikan $rows selalu array
     if (!is_array($rows)) {
         $rows = [];
     }
@@ -74,9 +86,9 @@ try {
     exit;
 }
 
-// bentuk response
-if (!empty($rows)) {   // <-- ganti count() dengan !empty()
-    $result = array_map(function($r){
+// format response
+if (!empty($rows)) {
+    $result = array_map(function($r) {
         return [
             'id_produk'           => $r['id_produk'],
             'nama_produk'         => $r['nama_produk'],
@@ -86,8 +98,8 @@ if (!empty($rows)) {   // <-- ganti count() dengan !empty()
             'rating'              => $r['rating'],
             'jumlah_varian_warna' => $r['jumlah_varian_warna'],
             'detail_produk'       => [
-                'kategori_produk'   => $r['kategori_produk'],
-                'nama_kategori'     => $r['nama_kategori'],
+                'id_kategori'   => $r['kategori_produk'],
+                'nama_kategori' => $r['nama_kategori'],
             ],
         ];
     }, $rows);
@@ -96,9 +108,15 @@ if (!empty($rows)) {   // <-- ganti count() dengan !empty()
         'status' => true,
         'result' => $result
     ], JSON_PRETTY_PRINT);
+
 } else {
+    // kosong
+    $msg = 'Tidak ditemukan produk dengan kata “' . $searchRaw . '”';
+    if ($kategoriRaw !== '') {
+        $msg .= ' pada kategori “' . $kategoriRaw . '”';
+    }
     echo json_encode([
         'status' => false,
-        'msg'    => 'Tidak ditemukan produk dengan kata “' . $searchRaw . '”'
+        'msg'    => $msg
     ], JSON_PRETTY_PRINT);
 }

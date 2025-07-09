@@ -342,39 +342,40 @@
 
     <script>
       $(function() {
-        // Elemen utama
-        const $list = $("#list_produk");
-        const $loadMore = $(".load-more-wrapper");
+        const $list      = $("#list_produk");
+        const $loadMore  = $(".load-more-wrapper");
 
-        // 1) Fungsi render array produk ke HTML
+        // state pencarian & kategori
+        let currentSearch   = null;
+        let currentCategory = null;
+
+        // 1) Render produk
         function renderProduk(data) {
           let html = "";
-          data.forEach(produk => {
+          data.forEach(p => {
             html += `
               <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="property-item rounded overflow-hidden">
                   <div class="position-relative overflow-hidden">
-                    <a href="#">
-                      <img class="img-fluid w-100 object-fit-cover" style="height:250px"
-                          src="${produk.gambar_produk}" alt="Gambar">
-                    </a>
+                    <a href="#"><img class="img-fluid w-100 object-fit-cover" style="height:250px"
+                        src="${p.gambar_produk}" alt="Gambar"></a>
                     <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                      ${produk.detail_produk.nama_kategori}
+                      ${p.detail_produk.nama_kategori}
                     </div>
                     <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                      ${produk.nama_produk}
+                      ${p.nama_produk}
                     </div>
                   </div>
                   <div class="p-4 pb-0">
-                    <h5 class="text-primary mb-3">Rp ${produk.harga_produk}.000,00</h5>
-                    <a class="d-block h5 mb-2" href="#">${produk.deskripsi_produk}</a>
+                    <h5 class="text-primary mb-3">Rp ${p.harga_produk}.000,00</h5>
+                    <a class="d-block h5 mb-2" href="#">${p.deskripsi_produk}</a>
                   </div>
                   <div class="d-flex border-top">
                     <small class="flex-fill text-center border-end py-2">
-                      <i class="fa fa-star text-primary me-2"></i>${produk.rating}
+                      <i class="fa fa-star text-primary me-2"></i>${p.rating}
                     </small>
                     <small class="flex-fill text-center py-2">
-                      <i class="fa fa-palette text-primary me-2"></i>${produk.jumlah_varian_warna} Varian
+                      <i class="fa fa-palette text-primary me-2"></i>${p.jumlah_varian_warna} Varian
                     </small>
                   </div>
                 </div>
@@ -384,98 +385,123 @@
           $loadMore.toggle(data.length > 0);
         }
 
-        // 2) Load default Featured
+        // 2) Load featured (atau hasil search jika ada)
         function loadFeatured() {
           $list.empty();
           $loadMore.show();
-          $.get("/Web-Liipa/api/list_katalog.php", function(result) {
-            if (Array.isArray(result) && result.length) {
-              renderProduk(result);
-            } else {
-              $list.html("<h3>Produk kosong</h3>");
-              $loadMore.hide();
-            }
-          }, "json").fail(function() {
-            $list.html("<h3>Gagal memuat daftar produk</h3>");
-            $loadMore.hide();
-          });
+
+          if (currentSearch) {
+            // gunakan fungsi searchAjax tanpa kategori
+            searchAjax(currentSearch, null);
+          } else {
+            // data default
+            $.getJSON("/Web-Liipa/api/list_katalog.php")
+              .done(data => {
+                if (Array.isArray(data) && data.length) renderProduk(data);
+                else {
+                  $list.html("<h3>Produk kosong</h3>");
+                  $loadMore.hide();
+                }
+              })
+              .fail(() => {
+                $list.html("<h3>Gagal memuat daftar produk</h3>");
+                $loadMore.hide();
+              });
+          }
         }
 
-        // 3) Filter per kategori
+        // 3) Filter kategori
         function filterProduk(kategori) {
-          // hilangkan param search di URL agar tidak bentrok
-          history.replaceState(null, '', window.location.pathname);
+          currentCategory = kategori;
           $list.empty();
           $loadMore.hide();
-          $.get("/Web-Liipa/api/filter_produk.php", { kategori }, function(response) {
-            if (response.status && Array.isArray(response.result) && response.result.length) {
-              renderProduk(response.result);
-            } else {
-              $list.html("<h3>Produk kosong untuk kategori “" + kategori + "”</h3>");
-            }
-          }, "json").fail(function() {
-            $list.html("<h3>Gagal memuat data kategori</h3>");
-          });
+
+          if (currentSearch) {
+            // kombinasi search + kategori
+            searchAjax(currentSearch, kategori);
+          } else {
+            // hanya kategori
+            $.getJSON("/Web-Liipa/api/filter_produk.php", { kategori })
+              .done(resp => {
+                if (resp.status && resp.result.length) {
+                  renderProduk(resp.result);
+                } else {
+                  $list.html(`<h3>Produk kosong untuk kategori “${kategori}”</h3>`);
+                }
+              })
+              .fail(() => {
+                $list.html("<h3>Gagal memuat data kategori</h3>");
+              });
+          }
         }
 
-        // 4) Search via query param
+        // 4) Pencarian (state + URL) lalu AJAX
         function searchProduk(query) {
+          currentSearch = query;
+          currentCategory = null;
+          history.replaceState(null, '', "?search=" + encodeURIComponent(query));
           $list.empty();
           $loadMore.hide();
-          $.get("/Web-Liipa/api/search.php", { search: query }, function(response) {
-            if (response.status && Array.isArray(response.result) && response.result.length) {
-              renderProduk(response.result);
-            } else {
-              $list.html("<h3>Hasil pencarian untuk “" + query + "” tidak ditemukan</h3>");
-            }
-          }, "json").fail(function() {
-            $list.html("<h3>Gagal memuat hasil pencarian</h3>");
-          });
+          searchAjax(query, null);
         }
 
-        // 5) Tangkap Enter di field search
-        $("#cari_produk").on("keydown", function(e) {
+        function searchAjax(query, kategori) {
+          const data = { search: query };
+          if (kategori) data.kategori = kategori;
+
+          $.getJSON("/Web-Liipa/api/search.php", data)
+            .done(resp => {
+              if (resp.status && resp.result.length) {
+                renderProduk(resp.result);
+              } else {
+                let msg = `Hasil “${query}”`;
+                if (kategori) msg += ` kategori “${kategori}”`;
+                msg += " tidak ditemukan";
+                $list.html(`<h3>${msg}</h3>`);
+              }
+            })
+            .fail(() => {
+              $list.html("<h3>Gagal memuat hasil pencarian</h3>");
+            });
+        }
+
+        // 5) Tangkap Enter & klik Search
+        $("#cari_produk").on("keydown", e => {
           if (e.key === "Enter") {
             e.preventDefault();
-            const q = $(this).val().trim();
-            if (q) {
-              // ubah URL dan jalankan search
-              history.replaceState(null, '', "?search=" + encodeURIComponent(q));
-              searchProduk(q);
-            }
+            const q = $(e.target).val().trim();
+            if (q) searchProduk(q);
           }
         });
-
-        // 6) Handler tombol Search
-        $(".btn-dark").on("click", function() {
+        $(".btn-dark").on("click", () => {
           const q = $("#cari_produk").val().trim();
-          if (q) {
-            history.replaceState(null, '', "?search=" + encodeURIComponent(q));
-            searchProduk(q);
-          }
+          if (q) searchProduk(q);
         });
 
-        // 7) Handler tab Featured
-        $('a.btn-outline-primary[href="#tab-1"]').on("click", function(e) {
+        // 6) Nav pills
+        // Featured
+        $('a.btn-outline-primary[href="#tab-1"]').on("click", e => {
           e.preventDefault();
-          new bootstrap.Tab(this).show();
+          new bootstrap.Tab(e.currentTarget).show();
           loadFeatured();
         });
+        // Kategori lain
+        $(".nav-pills a.btn-outline-primary")
+          .not('[href="#tab-1"]')
+          .on("click", e => {
+            e.preventDefault();
+            const kategori = $(e.currentTarget).text().trim();
+            new bootstrap.Tab(e.currentTarget).show();
+            filterProduk(kategori);
+          });
 
-        // 8) Handler tab kategori (nav pills selain Featured)
-        $(".nav-pills a.btn-outline-primary").not('[href="#tab-1"]').on("click", function(e) {
-          e.preventDefault();
-          const kategori = $(this).text().trim();
-          new bootstrap.Tab(this).show();
-          filterProduk(kategori);
-        });
-
-        // 9) Inisialisasi pada load pertama
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has("search") && urlParams.get("search").trim() !== "") {
-          const q0 = urlParams.get("search").trim();
+        // 7) Inisialisasi
+        const params = new URLSearchParams(window.location.search);
+        if (params.has("search") && params.get("search").trim()) {
+          const q0 = params.get("search").trim();
           $("#cari_produk").val(q0);
-          searchProduk(q0);
+          currentSearch = q0;
+          loadFeatured();
         } else {
           loadFeatured();
         }
