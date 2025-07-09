@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,33 +49,44 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                <!-- Brand -->
+                <a href="index.php" class="navbar-brand d-flex align-items-center">
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="img/icon.png" alt="Icon" style="width: 80px; height: 40px;">
                     </div>
                     <h1 class="m-0 text-primary">Liipa'</h1>
                 </a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        
+                <!-- Toggler button untuk mobile -->
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse"
+                        aria-controls="navbarCollapse"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+        
+                <!-- Menu yang di-collapse -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a href="index.php" class="nav-item nav-link">Home</a>
-                        <a href="katalog.php" class="nav-item nav-link">Katalog</a>
-                        <!-- <div class="nav-item dropdown">
-                            <a href="katalog.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Katalog</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="404.html" class="dropdown-item">Aksesoris</a>
-                                <a href="404.html" class="dropdown-item">Tas</a>
-                                <a href="404.html" class="dropdown-item">Totebag</a>
-                            </div>
-                        </div> -->
-                        <a href="the-heroes.php" class="nav-item nav-link">The Heroes</a>
+        
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a href="katalog.php" class="nav-item nav-link">Katalog</a>
+                            <a href="the-heroes.php" class="nav-item nav-link">The Heroes</a>
+                        <?php endif; ?>
+        
                         <a href="about.php" class="nav-item nav-link">Tentang Kami</a>
                         <a href="contact.php" class="nav-item nav-link active">Kontak</a>
                     </div>
-                    <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Masuk</a>
-                </div>
+        
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <a href="/api/logout.php" class="btn btn-outline-danger px-3 d-lg-flex">Logout</a>
+                    <?php else: ?>
+                        <a href="/Login-SignUp-Liipa/login.php" class="btn btn-primary px-3 d-lg-flex">Masuk</a>
+                    <?php endif; ?>
+                </div><!-- .collapse -->
             </nav>
         </div>
         <!-- Navbar End -->
@@ -185,7 +200,7 @@
         <!-- Contact End -->
 
 
-         <!-- Footer Start -->
+        <!-- Footer Start -->
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
@@ -193,21 +208,20 @@
                         <h5 class="text-white mb-4">Get In Touch</h5>
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Makassar, Sulawesi Selatan</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 123 456</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>liipa@gmail.com</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>kainpercaid@gmail.com</p>
                         <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/liipa.id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/@liipaid"><i class="fab fa-youtube"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Quick Links</h5>
-                        <a class="btn btn-link text-white-50" href="">About Us</a>
-                        <a class="btn btn-link text-white-50" href="">Contact Us</a>
-                        <a class="btn btn-link text-white-50" href="">Our Services</a>
-                        <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
-                        <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+                        <a class="btn btn-link text-white-50" href="about.php">About Us</a>
+                        <a class="btn btn-link text-white-50" href="contact.php">Contact Us</a>
+                        <a class="btn btn-link text-white-50" href="#">Privacy Policy</a>
+                        <a class="btn btn-link text-white-50" href="#">Terms & Condition</a>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Dapatkan Penawaran Spesial</h5>
@@ -230,7 +244,7 @@
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
-                                <a href="">Home</a>
+                                <a href="index.php">Home</a>
                                 <a href="">Cookies</a>
                                 <a href="">Help</a>
                                 <a href="">FQAs</a>
