@@ -19,9 +19,9 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="product-manage.html"><i class="far fa-newspaper"></i><span>Produk Manager</span></a><a class="nav-link" href="category-manage.html"><i class="fas fa-th"></i><span>Kategori Manager</span></a><a class="nav-link" href="team.html"><i class="fas fa-user-shield" style="font-size: 14px;"></i><span>Team Manager</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.php"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="product-manage.php"><i class="far fa-newspaper"></i><span>Produk Manager</span></a><a class="nav-link" href="category-manage.php"><i class="fas fa-th"></i><span>Kategori Manager</span></a><a class="nav-link" href="team.php"><i class="fas fa-user-shield" style="font-size: 14px;"></i><span>Team Manager</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                 </ul>
@@ -158,7 +158,7 @@
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Zerif Anime 2024</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © Liipa' 2024</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>

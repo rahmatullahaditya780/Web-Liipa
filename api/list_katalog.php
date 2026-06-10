@@ -8,10 +8,10 @@ require_once("vendor/autoload.php");
 
 // Koneksi ke database
 $pdo = new PDOConnector(
-    'localhost', // server
-    'root',      // user
-    '',          // password
-    'db_liipa'   // database
+    'localhost',               // host (localhost atau IP)
+    'root',                    // database user
+    '',                        // database password (kosong jika tidak ada)
+    'db_liipa' 
 );
 
 $pdoConn = $pdo->connect('utf8', []);

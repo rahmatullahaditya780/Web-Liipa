@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Table - Brand</title>
+    <title>Dashboard - Brand</title>
     <link href="../img/icon.png" rel="icon">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
@@ -19,9 +19,9 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="product-manage.html"><i class="far fa-newspaper"></i><span>Produk Manager</span></a><a class="nav-link active" href="category-manage.html"><i class="fas fa-th"></i><span>Kategori Manager</span></a><a class="nav-link" href="team.html"><i class="fas fa-user-shield" style="font-size: 14px;"></i><span>Team Manager</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.php"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="product-manage.php"><i class="far fa-newspaper"></i><span>Produk Manager</span></a><a class="nav-link" href="category-manage.php"><i class="fas fa-th"></i><span>Kategori Manager</span></a><a class="nav-link" href="team.php"><i class="fas fa-user-shield" style="font-size: 14px;"></i><span>Team Manager</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                 </ul>
@@ -125,30 +125,34 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Kategori Manager</h3>
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold"><button class="btn btn-success float-end" type="button"><i class="fas fa-plus"></i></button>Kategori List</p>
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Dashboard</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>total pengunjung</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>40,000</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Kategori</th>
-                                            <th>Aksesoris</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Gantungan Kunci</td>
-                                            <td>
-                                                <div class="btn-group" role="group"><button class="btn btn-danger" type="button"><i class="far fa-trash-alt" style="font-size: 17px;"></i></button></div>
-                                            </td>
-                                        </tr>
-                                        <tr></tr>
-                                    </tbody>
-                                </table>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-success py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>total pendapatan</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>$215,000</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,7 +160,7 @@
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Zerif Anime 2024</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © Liipa' 2024</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
