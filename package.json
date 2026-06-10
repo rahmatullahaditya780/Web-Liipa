@@ -1,0 +1,25 @@
+{
+    "$schema": "https://www.schemastore.org/package.json",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "overrides": {
+        "shell-quote": "^1.8.4"
+    },
+    "devDependencies": {
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^3.1",
+        "vite": "^8.0.0"
+    },
+    "dependencies": {
+        "@fontsource/heebo": "^5.2.8",
+        "@fontsource/inter": "^5.2.8",
+        "@popperjs/core": "^2.11.8",
+        "bootstrap": "^5.3.8",
+        "bootstrap-icons": "^1.13.1",
+        "sass": "^1.100.0"
+    }
+}

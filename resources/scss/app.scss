@@ -1,0 +1,453 @@
+// ===== Font self-host (pengganti Google Fonts CDN) =====
+@import '@fontsource/heebo/400.css';
+@import '@fontsource/heebo/500.css';
+@import '@fontsource/heebo/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/inter/800.css';
+
+// ===== Design token Liipa (dari css/style.css situs lama) =====
+$liipa-primary: #f6991a;
+$liipa-secondary: #f4801e;
+$liipa-light: #effdf5;
+$liipa-dark: #0e1a75;
+// Oranye gelap untuk teks/link kecil di atas putih (lolos kontras WCAG AA;
+// #f6991a hanya dipakai untuk elemen besar/dekoratif dan tombol).
+$liipa-primary-text: #ad5f00;
+
+// ===== Bootstrap override =====
+$primary: $liipa-primary;
+$secondary: $liipa-secondary;
+$dark: $liipa-dark;
+$light: $liipa-light;
+$font-family-sans-serif: 'Heebo', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+$headings-font-family: 'Inter', $font-family-sans-serif;
+$headings-font-weight: 700;
+$headings-color: $liipa-dark;
+$link-color: $liipa-primary-text;
+$enable-negative-margins: true;
+
+@import 'bootstrap/scss/bootstrap';
+
+// ===== Bootstrap Icons (self-host) =====
+$bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
+@import 'bootstrap-icons/font/bootstrap-icons.scss';
+
+:root {
+  --primary: #{$liipa-primary};
+  --secondary: #{$liipa-secondary};
+  --light: #{$liipa-light};
+  --dark: #{$liipa-dark};
+}
+
+// Tombol primary/secondary selalu teks putih seperti desain lama
+.btn.btn-primary,
+.btn.btn-secondary {
+  color: #fff;
+}
+
+.btn {
+  transition: 0.5s;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  border-radius: 50px;
+}
+
+.btn-square { width: 38px; height: 38px; }
+.btn-sm-square { width: 32px; height: 32px; }
+.btn-lg-square { width: 48px; height: 48px; }
+
+// ===== Aksesibilitas =====
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  padding: 0.5rem 1rem;
+  background: $liipa-dark;
+  color: #fff;
+
+  &:focus {
+    left: 0;
+    color: #fff;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid $liipa-dark;
+  outline-offset: 2px;
+}
+
+// ===== Back to top =====
+.back-to-top {
+  position: fixed;
+  display: none;
+  right: 45px;
+  bottom: 45px;
+  z-index: 99;
+
+  &.visible {
+    display: flex;
+  }
+}
+
+// ===== Navbar =====
+.nav-bar {
+  position: relative;
+  margin-top: 45px;
+  padding: 0 3rem;
+  transition: 0.5s;
+  z-index: 1030;
+
+  &.sticky-top {
+    position: sticky;
+    padding: 0;
+  }
+}
+
+.navbar {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  margin-right: 30px;
+  padding: 25px 0;
+  color: $liipa-dark;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  outline: none;
+
+  &:hover,
+  &.active {
+    color: $liipa-primary-text;
+  }
+}
+
+.navbar-light .navbar-brand {
+  height: 75px;
+
+  h1 {
+    color: $liipa-primary;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .nav-bar {
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    margin-right: 0;
+    padding: 10px 0;
+  }
+
+  .navbar-light .navbar-nav {
+    border-top: 1px solid #eeeeee;
+  }
+}
+
+// ===== Header / hero =====
+@media (min-width: 992px) {
+  .header {
+    margin-top: -120px;
+  }
+}
+
+.header-carousel {
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 15px;
+    background: $liipa-primary;
+    border-radius: 50%;
+    opacity: 1;
+    transition: 0.5s;
+
+    &:hover {
+      background: $liipa-secondary;
+    }
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: #dddddd;
+}
+
+// ===== Icon box =====
+.icon {
+  padding: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff !important;
+}
+
+// ===== About =====
+.about-img {
+  img {
+    position: relative;
+    z-index: 2;
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: $liipa-primary;
+    transform: skew(20deg);
+    z-index: 1;
+  }
+}
+
+// ===== Kartu kategori (homepage) =====
+.cat-item {
+  div {
+    background: #ffffff;
+    border: 1px dashed rgba(247, 114, 6, 0.797);
+    transition: 0.5s;
+  }
+
+  &:hover div {
+    background: $liipa-primary;
+    border-color: transparent;
+  }
+
+  div * {
+    transition: 0.5s;
+  }
+
+  &:hover div * {
+    color: #ffffff !important;
+  }
+}
+
+// ===== Kartu produk (katalog) =====
+.nav-pills .nav-item .btn {
+  color: $liipa-dark;
+
+  &:hover,
+  &.active {
+    color: #ffffff;
+  }
+}
+
+.property-item {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+
+  img {
+    transition: 0.5s;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+
+  .border-top {
+    border-top: 1px dashed rgba(247, 114, 6, 0.797) !important;
+  }
+
+  .border-end {
+    border-right: 1px dashed rgba(247, 114, 6, 0.797) !important;
+  }
+}
+
+// ===== Tim =====
+.team-item {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  transition: 0.5s;
+
+  .btn {
+    color: $liipa-primary-text;
+    background: #ffffff;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      color: #ffffff;
+      background: $liipa-primary;
+    }
+  }
+
+  &:hover {
+    border-color: $liipa-secondary !important;
+  }
+}
+
+// ===== Testimoni =====
+.testimonial-carousel {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  .testimonial-item .border {
+    border: 1px dashed rgba(247, 114, 6, 0.797) !important;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 40px;
+    height: 40px;
+    top: calc(50% - 20px);
+    background: $liipa-primary;
+    border-radius: 50%;
+    opacity: 1;
+    transition: 0.5s;
+
+    &:hover {
+      background: $liipa-dark;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .testimonial-carousel {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+// ===== Footer =====
+.footer {
+  .btn.btn-social {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $liipa-light;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 35px;
+    transition: 0.3s;
+
+    &:hover {
+      color: $liipa-primary;
+      border-color: $liipa-light;
+    }
+  }
+
+  .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: 0.3s;
+
+    &::before {
+      content: '\F285'; // bi-chevron-right
+      font-family: 'bootstrap-icons';
+      margin-right: 10px;
+    }
+
+    &:hover {
+      letter-spacing: 1px;
+      box-shadow: none;
+    }
+  }
+
+  .form-control {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .copyright {
+    padding: 25px 0;
+    font-size: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    a {
+      color: $liipa-light;
+    }
+  }
+
+  .footer-menu a {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+}
+
+// ===== Fun fact =====
+.funfact-box {
+  background-color: rgba(244, 128, 30, 1);
+  border: 1px solid $liipa-light;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.funfact-section {
+  position: relative;
+}
+
+.funfact-item .counter {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+}
+
+// ===== Animasi reveal (pengganti WOW.js/Animate.css) =====
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--reveal-delay, 0s);
+
+  &.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// ===== Halaman auth (port dari Login-SignUp-Liipa) =====
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $liipa-light;
+  padding: 2rem 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 2rem;
+}
