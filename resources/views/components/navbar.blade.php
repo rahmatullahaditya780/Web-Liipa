@@ -4,7 +4,7 @@
             <div class="icon p-2 me-2">
                 <img class="img-fluid" src="{{ asset('img/icon.png') }}" alt="Logo Liipa" width="80" height="40">
             </div>
-            <h1 class="m-0 text-primary">Liipa'</h1>
+            <h1 class="m-0" style="color: #0e1a75;">Liipa'</h1>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
