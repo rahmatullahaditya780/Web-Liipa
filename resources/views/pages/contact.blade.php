@@ -5,11 +5,16 @@
 
 @section('content')
     {{-- Header --}}
-    <div class="container-fluid header bg-white p-0">
-        <div class="row g-0 align-items-center">
+    <div class="container-fluid header position-relative overflow-hidden bg-white p-0">
+        <div class="hero-blob hero-blob--one" aria-hidden="true"></div>
+        <div class="hero-blob hero-blob--two" aria-hidden="true"></div>
+        <div class="row g-0 align-items-center position-relative">
             <div class="col-md-6 p-5 mt-lg-5">
-                <h1 class="display-5 mb-4">Kontak</h1>
-                <nav aria-label="breadcrumb">
+                <span class="hero-badge mb-3 hero-enter" style="--enter-delay: 0s">
+                    <i class="bi bi-chat-dots-fill" aria-hidden="true"></i>Kami Siap Membantu
+                </span>
+                <h1 class="display-5 mb-4 hero-enter" style="--enter-delay: 0.1s">Kontak</h1>
+                <nav aria-label="breadcrumb" class="hero-enter" style="--enter-delay: 0.3s">
                     <ol class="breadcrumb text-uppercase">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Kontak</li>
@@ -22,7 +27,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 reveal" style="max-width: 600px;">
-                <h2 class="mb-3">Hubungi Kami</h2>
+                <h2 class="mb-3 section-title">Hubungi Kami</h2>
                 <p>Punya pertanyaan, saran, atau ingin berkolaborasi? Jangan ragu untuk menghubungi kami! Kami
                     menghargai setiap hubungan dan siap membantu Anda bergabung dalam misi menuju masa depan yang
                     lebih berkelanjutan.</p>
@@ -48,7 +53,7 @@
                                     <div class="icon me-3" style="width: 45px; height: 45px;">
                                         <i class="bi bi-envelope-open text-primary" aria-hidden="true"></i>
                                     </div>
-                                    <span>kainpercaid@gmail.com</span>
+                                    <a class="text-decoration-none text-body" href="mailto:kainpercaid@gmail.com">kainpercaid@gmail.com</a>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +64,8 @@
                                     <div class="icon me-3" style="width: 45px; height: 45px;">
                                         <i class="bi bi-telephone text-primary" aria-hidden="true"></i>
                                     </div>
-                                    <span>+62 123 456</span>
+                                    {{-- TODO: ganti dengan nomor telepon asli (juga di components/footer.blade.php) --}}
+                                    <a class="text-decoration-none text-body" href="tel:+62123456">+62 123 456</a>
                                 </div>
                             </div>
                         </div>

@@ -147,7 +147,7 @@
         <div class="container">
             <div class="funfact-box">
                 <div class="funfact-section text-center">
-                    <div class="funfact-bg" style="background-image: url('{{ asset('img/fun-fact.png') }}')" aria-hidden="true"></div>
+                    <div class="funfact-bg" style="background-image: url('{{ asset('img/fun-fact.svg') }}')" aria-hidden="true"></div>
                     <div class="funfact-overlay" aria-hidden="true"></div>
                     <div class="funfact-pings" aria-hidden="true">
                         <span class="map-ping" style="--ping-x: 13%; --ping-y: 36%; --ping-delay: 0s"></span>

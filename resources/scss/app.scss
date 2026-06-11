@@ -503,6 +503,47 @@ html {
   }
 }
 
+// ===== Panel filter katalog =====
+.catalog-filter {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, $liipa-primary, $liipa-secondary);
+  box-shadow: 0 10px 30px rgba(246, 153, 26, 0.25);
+}
+
+// Chip filter aktif (bisa diklik untuk menghapus filter tersebut)
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  border: 1px dashed rgba(246, 153, 26, 0.55);
+  background: #ffffff;
+  color: $liipa-primary-text;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    background: $liipa-primary;
+    border-color: transparent;
+    color: #ffffff;
+  }
+
+  &--reset {
+    border-style: solid;
+    border-color: #ced4da;
+    color: #6c757d;
+
+    &:hover {
+      background: #6c757d;
+      border-color: transparent;
+      color: #ffffff;
+    }
+  }
+}
+
 // ===== Kartu produk (katalog) =====
 .nav-pills .nav-item .btn {
   color: $liipa-dark;
@@ -514,14 +555,31 @@ html {
 }
 
 .property-item {
+  background: #ffffff;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 
   img {
     transition: 0.5s;
   }
 
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  }
+
   &:hover img {
     transform: scale(1.1);
+  }
+
+  .featured-badge {
+    background: $liipa-dark;
+    color: #ffffff;
+    font-size: 0.85rem;
+
+    i {
+      color: $liipa-primary;
+    }
   }
 
   .border-top {
@@ -530,6 +588,23 @@ html {
 
   .border-end {
     border-right: 1px dashed rgba(247, 114, 6, 0.797) !important;
+  }
+
+  .card-action {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $liipa-dark;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background: $liipa-primary;
+      color: #ffffff;
+
+      i {
+        color: #ffffff;
+      }
+    }
   }
 }
 
@@ -949,6 +1024,65 @@ html {
   background: #ffffff;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
   text-align: center;
+}
+
+// ===== Timeline Perjalanan (halaman Tentang) =====
+.timeline {
+  position: relative;
+  max-width: 720px;
+  margin-inline: auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 24px;
+    width: 3px;
+    border-radius: 2px;
+    background: rgba(246, 153, 26, 0.35);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 72px;
+
+  & + & {
+    margin-top: 2rem;
+  }
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: $liipa-primary;
+  color: #ffffff;
+  font-size: 1.25rem;
+  box-shadow: 0 0 0 6px rgba(246, 153, 26, 0.15);
+}
+
+.timeline-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  small {
+    color: $liipa-primary-text;
+  }
 }
 
 // ===== Halaman auth (port dari Login-SignUp-Liipa) =====

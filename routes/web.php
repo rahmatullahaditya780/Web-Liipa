@@ -12,7 +12,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/katalog', CatalogController::class)->name('catalog');
+Route::get('/katalog', [CatalogController::class, 'index'])->name('catalog');
+Route::get('/katalog/{product:slug}', [CatalogController::class, 'show'])->name('catalog.show');
 Route::view('/tentang-kami', 'pages.about')->name('about');
 
 Route::get('/kontak', [ContactController::class, 'show'])->name('contact');

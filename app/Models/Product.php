@@ -58,9 +58,13 @@ class Product extends Model
 
     public function scopeSearch(Builder $query, ?string $term): Builder
     {
+        // Cocokkan hanya pada awal kata (awal teks atau setelah spasi), supaya
+        // "tas" tidak ikut mencocokkan kata seperti "berkualitas".
         return $query->when($term, fn (Builder $q) => $q->where(function (Builder $sub) use ($term) {
-            $sub->where('name', 'like', "%{$term}%")
-                ->orWhere('description', 'like', "%{$term}%");
+            foreach (['name', 'description'] as $column) {
+                $sub->orWhere($column, 'like', "{$term}%")
+                    ->orWhere($column, 'like', "% {$term}%");
+            }
         }));
     }
 
@@ -75,5 +79,25 @@ class Product extends Model
     public function scopeFeatured(Builder $query): Builder
     {
         return $query->where('is_featured', true);
+    }
+
+    public function scopePriceRange(Builder $query, ?string $range): Builder
+    {
+        return match ($range) {
+            'dibawah-50' => $query->where('price', '<', 50000),
+            '50-100' => $query->whereBetween('price', [50000, 100000]),
+            'diatas-100' => $query->where('price', '>', 100000),
+            default => $query,
+        };
+    }
+
+    public function scopeSortBy(Builder $query, ?string $sort): Builder
+    {
+        return match ($sort) {
+            'harga-terendah' => $query->orderBy('price'),
+            'harga-tertinggi' => $query->orderByDesc('price'),
+            'rating' => $query->orderByDesc('rating'),
+            default => $query->latest(),
+        };
     }
 }

@@ -112,6 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
 
+    // Auto-submit form saat kontrol berubah (mis. dropdown urutkan di katalog)
+    document.querySelectorAll('[data-autosubmit]').forEach((el) => {
+        el.addEventListener('change', () => el.form?.submit());
+    });
+
     // Status loading tombol submit (anti double-submit)
     document.querySelectorAll('form[data-loading]').forEach((form) => {
         form.addEventListener('submit', () => {
