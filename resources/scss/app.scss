@@ -39,6 +39,62 @@ $bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
   --dark: #{$liipa-dark};
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+// ===== Aksen judul section =====
+.section-title {
+  position: relative;
+  padding-bottom: 0.75rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    border-radius: 2px;
+    background: $liipa-primary;
+    transform: translateX(-50%);
+    transition: width 0.8s ease 0.3s;
+  }
+
+  &.section-title--start::after {
+    left: 0;
+    transform: none;
+  }
+}
+
+.reveal.visible .section-title::after {
+  width: 64px;
+}
+
+// ===== Pembatas gelombang antar-section =====
+.wave-divider {
+  line-height: 0;
+  color: $liipa-light;
+  background: #ffffff;
+  margin-bottom: -1px;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 56px;
+    fill: currentColor;
+  }
+
+  &--flip {
+    margin-bottom: 0;
+    margin-top: -1px;
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
 // Tombol primary/secondary selalu teks putih seperti desain lama
 .btn.btn-primary,
 .btn.btn-secondary {
@@ -47,6 +103,13 @@ $bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
 
 .btn {
   transition: 0.5s;
+}
+
+// Lift halus tombol utama saat hover
+.btn.btn-primary:hover,
+.btn.btn-outline-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(246, 153, 26, 0.3);
 }
 
 .btn-square,
@@ -162,28 +225,208 @@ $bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
   }
 }
 
-.header-carousel {
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 50px;
-    height: 50px;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0 15px;
-    background: $liipa-primary;
-    border-radius: 50%;
-    opacity: 1;
-    transition: 0.5s;
+// Entrance bertahap konten hero saat halaman dibuka
+.hero-enter {
+  opacity: 0;
+  animation: hero-up 0.8s ease-out forwards;
+  animation-delay: var(--enter-delay, 0s);
+}
 
-    &:hover {
-      background: $liipa-secondary;
+@keyframes hero-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Blob gradien dekoratif yang bergerak pelan di latar hero
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.hero-blob--one {
+  top: -80px;
+  left: -100px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(246, 153, 26, 0.55), transparent 70%);
+  animation: blob-drift 14s ease-in-out infinite alternate;
+}
+
+.hero-blob--two {
+  bottom: -60px;
+  left: 30%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(14, 26, 117, 0.3), transparent 70%);
+  animation: blob-drift 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes blob-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(40px, 30px) scale(1.15); }
+}
+
+// Kursor berkedip, hanya tampil selama efek mengetik berlangsung
+.typewriter.typing::after {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  background: $liipa-primary;
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+
+// Indikator gulir ke bawah di hero
+.hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ffffff;
+  color: $liipa-primary-text;
+  font-size: 1.25rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.12);
+  animation: hero-bounce 2.2s ease-in-out infinite;
+
+  &:hover {
+    color: #ffffff;
+    background: $liipa-primary;
+  }
+}
+
+@keyframes hero-bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 10px); }
+}
+
+// Badge pill di atas judul hero
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  border: 1px dashed rgba(246, 153, 26, 0.55);
+  background: rgba(246, 153, 26, 0.1);
+  color: $liipa-primary-text;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  i {
+    font-size: 1rem;
+  }
+}
+
+// Statistik mini di bawah CTA hero
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+
+  .hero-stat {
+    strong {
+      display: block;
+      font-family: $headings-font-family;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: $liipa-dark;
+    }
+
+    small {
+      color: #6c757d;
     }
   }
 
-  .carousel-item img {
-    width: 100%;
-    height: auto;
+  .hero-stat + .hero-stat {
+    margin-left: 1.5rem;
+    padding-left: 1.5rem;
+    border-left: 1px dashed rgba(246, 153, 26, 0.5);
   }
+}
+
+// Foto hero: bingkai blob organik yang ber-morph + glow oranye
+.hero-img {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -24px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(246, 153, 26, 0.35), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+
+  picture {
+    position: relative;
+    display: block;
+  }
+
+  img {
+    position: relative;
+    border-radius: 58% 42% 38% 62% / 53% 45% 55% 47%;
+    animation: blob-morph 16s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes blob-morph {
+  from { border-radius: 58% 42% 38% 62% / 53% 45% 55% 47%; }
+  to { border-radius: 42% 58% 62% 38% / 46% 56% 44% 54%; }
+}
+
+// Chip melayang di atas foto hero
+.hero-chip {
+  position: absolute;
+  left: 0;
+  bottom: 14%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 50px;
+  background: #ffffff;
+  color: $liipa-dark;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: chip-float 4.5s ease-in-out infinite;
+
+  i {
+    color: $liipa-primary-text;
+    font-size: 1.1rem;
+  }
+}
+
+@keyframes chip-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.header-carousel .carousel-item img {
+  width: 100%;
+  height: auto;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -221,6 +464,8 @@ $bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
 
 // ===== Kartu kategori (homepage) =====
 .cat-item {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
   div {
     background: #ffffff;
     border: 1px dashed rgba(247, 114, 6, 0.797);
@@ -238,6 +483,23 @@ $bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
 
   &:hover div * {
     color: #ffffff !important;
+  }
+
+  .icon {
+    overflow: hidden;
+
+    img {
+      transition: transform 0.5s ease;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+
+    .icon img {
+      transform: scale(1.08);
+    }
   }
 }
 
@@ -273,8 +535,38 @@ $bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
 
 // ===== Tim =====
 .team-item {
+  position: relative;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
   transition: 0.5s;
+
+  // Garis aksen yang melebar saat hover
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 0;
+    height: 4px;
+    background: $liipa-primary;
+    transition: width 0.5s ease;
+  }
+
+  img {
+    transition: transform 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+
+    &::before {
+      width: 100%;
+    }
+
+    img {
+      transform: scale(1.05);
+    }
+  }
 
   .btn {
     color: $liipa-primary-text;
@@ -404,12 +696,177 @@ $bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
 
 .funfact-section {
   position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  padding: 80px 0;
 }
 
-.funfact-item .counter {
-  font-size: 2rem;
-  font-weight: 700;
-  display: block;
+// Lapisan peta: zoom pelan (Ken Burns)
+.funfact-bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: funfact-zoom 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+// Gradasi hidup yang bergeser pelan di atas peta
+.funfact-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(246, 153, 26, 0.5) 0%,
+    rgba(244, 128, 30, 0) 35%,
+    rgba(14, 26, 117, 0.28) 70%,
+    rgba(246, 153, 26, 0.4) 100%
+  );
+  background-size: 250% 250%;
+  animation: funfact-sheen 14s ease-in-out infinite alternate;
+}
+
+@keyframes funfact-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+@keyframes funfact-sheen {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+// Titik aktivitas berdenyut (ping radar) di atas peta
+.funfact-pings {
+  position: absolute;
+  inset: 0;
+}
+
+.map-ping {
+  position: absolute;
+  left: var(--ping-x);
+  top: var(--ping-y);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    animation: map-ping 2.8s ease-out infinite;
+    animation-delay: var(--ping-delay, 0s);
+  }
+}
+
+@keyframes map-ping {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(4.5); opacity: 0; }
+}
+
+// Partikel perca kain melayang ke atas
+.funfact-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+
+  span {
+    position: absolute;
+    bottom: -30px;
+    display: block;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 3px;
+    animation: scrap-rise linear infinite;
+  }
+
+  span:nth-child(1) { left: 8%; width: 12px; height: 12px; animation-duration: 13s; }
+  span:nth-child(2) { left: 22%; width: 8px; height: 14px; animation-duration: 17s; animation-delay: 2s; }
+  span:nth-child(3) { left: 35%; width: 14px; height: 10px; animation-duration: 15s; animation-delay: 5s; background: rgba(14, 26, 117, 0.25); }
+  span:nth-child(4) { left: 48%; width: 9px; height: 9px; animation-duration: 19s; animation-delay: 1s; }
+  span:nth-child(5) { left: 60%; width: 13px; height: 8px; animation-duration: 14s; animation-delay: 7s; }
+  span:nth-child(6) { left: 72%; width: 10px; height: 14px; animation-duration: 18s; animation-delay: 3s; background: rgba(14, 26, 117, 0.25); }
+  span:nth-child(7) { left: 84%; width: 8px; height: 8px; animation-duration: 16s; animation-delay: 6s; }
+  span:nth-child(8) { left: 93%; width: 12px; height: 10px; animation-duration: 20s; animation-delay: 4s; }
+}
+
+@keyframes scrap-rise {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(-480px) rotate(240deg); opacity: 0; }
+}
+
+.funfact-item {
+  transition: transform 0.4s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  .counter {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+
+    // Sedikit "berdenyut" selama angka berjalan
+    &.counting {
+      transform: scale(1.06);
+    }
+
+    // Efek pop saat hitungan selesai
+    &.counted {
+      animation: counter-pop 0.5s ease;
+    }
+  }
+}
+
+@keyframes counter-pop {
+  0% { transform: scale(1.18); }
+  55% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .funfact-item {
+    transition: none;
+
+    .counter.counting,
+    .counter.counted {
+      transform: none;
+      animation: none;
+    }
+  }
+
+  .funfact-bg,
+  .funfact-overlay,
+  .map-ping::after,
+  .hero-blob,
+  .hero-scroll,
+  .hero-img img,
+  .hero-chip,
+  .typewriter::after {
+    animation: none;
+  }
+
+  .funfact-particles {
+    display: none;
+  }
+
+  .hero-enter {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 // ===== Animasi reveal (pengganti WOW.js/Animate.css) =====

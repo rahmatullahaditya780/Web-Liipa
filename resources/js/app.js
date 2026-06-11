@@ -37,17 +37,63 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
+    // Efek mengetik pada tagline hero — sekali per elemen, saat slide-nya tampil
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const typeText = (el) => {
+        if (el.dataset.typed) return;
+        el.dataset.typed = 'true';
+        const fullText = el.dataset.text ?? el.textContent.trim();
+        el.textContent = '';
+        el.classList.add('typing');
+        let pos = 0;
+        const type = () => {
+            el.textContent = fullText.slice(0, ++pos);
+            if (pos < fullText.length) {
+                setTimeout(type, 65);
+            } else {
+                el.classList.remove('typing');
+            }
+        };
+        setTimeout(type, 900);
+    };
+
+    if (!reduceMotion) {
+        // Tagline di luar carousel atau pada slide aktif: ketik langsung saat load
+        document.querySelectorAll('.typewriter').forEach((el) => {
+            const slide = el.closest('.carousel-item');
+            if (!slide || slide.classList.contains('active')) {
+                typeText(el);
+            }
+        });
+
+        // Tagline pada slide lain: ketik saat slide-nya pertama kali tampil
+        document.querySelectorAll('.carousel').forEach((carousel) => {
+            carousel.addEventListener('slid.bs.carousel', (event) => {
+                event.relatedTarget.querySelectorAll('.typewriter').forEach(typeText);
+            });
+        });
+    }
+
     // Animasi counter angka (fun fact)
     const animateCount = (el) => {
         const target = parseInt(el.dataset.value, 10);
         const duration = parseInt(el.dataset.animationDuration ?? '2000', 10);
         const startTime = performance.now();
+        // Easing: cepat di awal lalu melambat (lebih dinamis daripada linear)
+        const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+        el.classList.add('counting');
 
         const update = (now) => {
             const progress = Math.min((now - startTime) / duration, 1);
-            el.textContent = Math.floor(progress * target).toLocaleString('id-ID');
+            const eased = easeOutExpo(progress);
+            el.textContent = Math.floor(eased * target).toLocaleString('id-ID');
             if (progress < 1) {
                 requestAnimationFrame(update);
+            } else {
+                el.textContent = target.toLocaleString('id-ID');
+                el.classList.remove('counting');
+                el.classList.add('counted');
             }
         };
         requestAnimationFrame(update);
