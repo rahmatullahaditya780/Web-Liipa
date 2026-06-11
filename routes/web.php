@@ -22,7 +22,7 @@ Route::post('/kontak', [ContactController::class, 'send'])
 
 Route::get('/the-heroes', [HeroApplicationController::class, 'show'])->name('heroes');
 Route::post('/the-heroes', [HeroApplicationController::class, 'send'])
-    ->middleware('throttle:5,1')
+    ->middleware(['auth', 'throttle:5,1'])
     ->name('heroes.send');
 
 Route::middleware('guest')->group(function () {
